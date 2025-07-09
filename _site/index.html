@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technity Solutions</title>
+  <link rel="icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #cb6840;
+      --primary-dark: #a94e2b;
+      --accent: #cb6840;
+      --bg: #f9f7f4;
+      --surface: #fff;
+      --text: #222;
+      --muted: #6b7280;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(203,104,64,0.08);
+      --divider: #e5e7eb;
+      --nav-shadow: 0 2px 12px rgba(203,104,64,0.07);
+    }
+    html { box-sizing: border-box; }
+    *, *:before, *:after { box-sizing: inherit; }
+    body {
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      background: var(--surface);
+      box-shadow: var(--nav-shadow);
+      padding: 0.5rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      position: relative;
+      transition: background 0.18s, color 0.18s;
+      overflow: hidden;
+      display: inline-block;
+    }
+    nav a:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 0.3rem;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+    nav a:hover, nav a:focus {
+      background: rgba(203,104,64,0.08);
+      color: var(--primary);
+    }
+    nav a:hover:after, nav a:focus:after {
+      transform: scaleX(1);
+    }
+    nav a.active {
+      /* background: var(--primary); */
+      /* color: #fff; */
+    }
+    nav a.active:after {
+      background: var(--primary);
+      transform: scaleX(1);
+    }
+    main {
+      max-width: 1000px;
+      margin: 2.5rem auto 0 auto;
+      background: var(--surface);
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      min-height: 60vh;
+    }
+    .hero {
+      position: relative;
+      background: linear-gradient(120deg, #fbe7dd 0%, #f9f7f4 100%);
+      border-radius: var(--radius);
+      padding: 3.5rem 2rem 2.5rem 2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.13;
+      z-index: 0;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    .hero-bg-shape1 {
+      width: 320px; height: 320px; background: var(--primary);
+      top: -80px; left: -100px;
+      animation-delay: 0s;
+    }
+    .hero-bg-shape2 {
+      width: 180px; height: 180px; background: var(--primary-dark);
+      bottom: -60px; right: -60px;
+      animation-delay: 2s;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-20px) scale(1.08); }
+    }
+    .hero h2 {
+      font-size: 2.4rem;
+      margin: 0 0 0.7rem 0;
+      color: var(--primary-dark);
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.18rem;
+      margin: 0 auto 1.7rem auto;
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero .cta {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 0.85rem 2.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.15rem;
+      text-decoration: none;
+      box-shadow: 0 2px 12px rgba(203,104,64,0.10);
+      transition: background 0.2s, transform 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+    .hero .cta:hover {
+      background: var(--primary-dark);
+      color: #fff;
+      transform: translateY(-2px) scale(1.04);
+    }
+    .divider {
+      border: none;
+      border-top: 2px solid var(--divider);
+      margin: 2.5rem 0 2rem 0;
+    }
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+    .service-card {
+      background: linear-gradient(120deg, #fbe7dd 60%, #fff 100%);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(203,104,64,0.07);
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      flex: 1 1 220px;
+      max-width: 260px;
+      min-width: 180px;
+      text-align: center;
+      transition: transform 0.18s, box-shadow 0.18s;
+      position: relative;
+      z-index: 1;
+    }
+    .service-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 6px 24px rgba(203,104,64,0.13);
+    }
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.7rem;
+      color: var(--primary);
+    }
+    .service-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--primary-dark);
+    }
+    .service-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .why-choose {
+      background: linear-gradient(90deg, #fff 60%, #f6f8fa 100%);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(245,158,66,0.07);
+      padding: 2rem 1.5rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .why-choose h3 {
+      color: var(--primary-dark);
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+      font-weight: 700;
+    }
+    .why-choose ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    .why-choose li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.2em;
+      position: relative;
+      text-align: left;
+    }
+    .why-choose li:before {
+      content: "★";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      font-size: 1em;
+      top: 0.1em;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      margin: 3rem 0 1.5rem 0;
+      font-size: 1rem;
+    }
+    @media (max-width: 800px) {
+      .services { flex-direction: column; align-items: center; }
+      .nav-container, main { padding: 0 1rem; }
+      main { padding: 1.5rem 1rem; }
+      .hero { padding: 1.5rem 1rem 1rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="/" class="logo" style="display:flex;align-items:center;gap:0.7rem;">
+        <img src="/assets/Technity Logo Full Horizontal.png" alt="Technity Solutions Logo" style="height:48px;max-width:220px;display:block;">
+      </a>
+      <nav>
+        <a href="/" class="active">Home</a>
+        <a href="/pages/about/">About</a>
+        <a href="/pages/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+  <span class="hero-bg-shape hero-bg-shape1"></span>
+  <span class="hero-bg-shape hero-bg-shape2"></span>
+  <h2>Innovative Technology. Fast Delivery.</h2>
+  <p>Technity Solutions is your partner for end-to-end software consultancy, specializing in rapid development, modern architecture, and production-ready solutions.</p>
+  <a href="/pages/contact/" class="cta">Contact Us</a>
+</section>
+<hr class="divider" />
+<section class="services">
+  <div class="service-card">
+    <div class="service-icon">🧩</div>
+    <div class="service-title">Architecture & Design</div>
+    <div class="service-desc">Modern, scalable, and robust software architecture for your business needs.</div>
+  </div>
+  <div class="service-card">
+    <div class="service-icon">💻</div>
+    <div class="service-title">Full-stack Development</div>
+    <div class="service-desc">Rapid development using the latest technologies for web, mobile, and cloud.</div>
+  </div>
+  <div class="service-card">
+    <div class="service-icon">🚀</div>
+    <div class="service-title">CI/CD & DevOps</div>
+    <div class="service-desc">Automated pipelines, deployment, and infrastructure as code (IaC).</div>
+  </div>
+  <div class="service-card">
+    <div class="service-icon">⚡</div>
+    <div class="service-title">Performance Testing</div>
+    <div class="service-desc">Ensure your systems are fast, reliable, and ready for scale.</div>
+  </div>
+</section>
+<hr class="divider" />
+<section class="why-choose">
+  <h3>Why Choose Technity Solutions?</h3>
+  <ul>
+    <li>End-to-end delivery: from design to deployment</li>
+    <li>Expertise in modern, innovative technologies</li>
+    <li>Fast, reliable, and production-ready solutions</li>
+    <li>Transparent communication and agile process</li>
+    <li>Proven track record with satisfied clients</li>
+  </ul>
+</section>
+<hr class="divider" /> 
+  </main>
+  <footer>
+    &copy; 2024 Technity Solutions. All rights reserved.
+  </footer>
+</body>
+</html> 
